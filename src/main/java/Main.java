@@ -5,6 +5,16 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        int seed = 112;
+        int n = 1;
+        int y = 5;
+        int startSum = getSum("src/main/resources/2.bmp", seed, n);
+        makeDigital("src/main/resources/2.bmp", "src/main/resources/3.bmp", seed, n, y);
+        int endSum = getSum("src/main/resources/3.bmp", seed, n);
+        System.out.println("Start: "+startSum+"\nEnd: "+endSum+"\nDif: "+(endSum-startSum)+"\nn: "+(endSum-startSum)/y);
+    }
+
     public static int checkValue(int value) {
         if (value < 0) {
             value = 0;
@@ -19,16 +29,6 @@ public class Main {
         rgb[1] = checkValue(rgb[1] + y);
         rgb[2] = checkValue(rgb[2] + y);
         return rgb;
-    }
-
-    public static void main(String[] args) throws IOException {
-        int seed = 112;
-        int n = 1;
-        int y = 5;
-        int startSum = getSum("src/main/resources/2.bmp", seed, n);
-        makeDigital("src/main/resources/2.bmp", "src/main/resources/3.bmp", seed, n, y);
-        int endSum = getSum("src/main/resources/3.bmp", seed, n);
-        System.out.println("Start: "+startSum+"\nEnd: "+endSum+"\nDif: "+(endSum-startSum)+"\nn: "+(endSum-startSum)/y);
     }
 
     public static void makeDigital(String fromFile, String toFile, int seed, int n, int y) throws IOException {
